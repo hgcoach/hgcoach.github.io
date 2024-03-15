@@ -1,0 +1,450 @@
+<!-- htmlhint ignore: doctype-first -->
+
+<h3 id='tool-name'>Bonus calculator</h3>
+
+<div id='quarter-inputs'>
+
+  <table>
+
+    <tr>
+
+      <th><label for='year-of-quarter'>Quarter</label></th>
+
+      <td>
+        <input id='year-of-quarter'
+               type='text'
+               placeholder='yyyy'
+               style='width: 2.07rem'>
+        <select id='quarter-selection'
+                onchange='setQuarterInputSelectionColor()'>
+          <option value=''
+                  class='placeholder'
+                  selected
+                  hidden>Select</option>
+          <option value='Q1'
+                  class='normal-color'>Q1</option>
+          <option value='Q2'
+                  class='normal-color'>Q2</option>
+          <option value='Q3'
+                  class='normal-color'>Q3</option>
+          <option value='Q4'
+                  class='normal-color'>Q4</option>
+        </select>
+      </td>
+
+    </tr>
+
+  </table><br>
+
+  <input id='calculate-quarter-date-range-button'
+         type='button'
+         value='Calculate date range'
+         onclick='calculateQuarterDateRange()'>
+
+</div>
+
+<div id='calculated-quarter-info'
+      hidden>
+
+  <div class='space-between'>
+    <span>
+      <span>HG's</span>
+      <span id='quarter'
+            class='accented'></span>
+      <span>is:</span>
+    </span>
+    <input id='reset-quarter-date-range-button'
+             type='button'
+             value='Reset'
+             onclick='resetQuarterDateRange()'>
+  </div>
+
+  <div class='space-between'>
+
+    <table>
+
+      <tr>
+        <td>
+          <code class='annotation'>from</code>
+          <code id='quarter-start-date'
+                class='accented'></code>
+          <code class='annotation'>(00:00 UTC)</code>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code class='annotation'>to</code>
+          <code id='quarter-end-date'
+                class='accented'></code>
+          <code class='annotation'>(23:59 UTC)</code>
+        </td>
+      </tr>
+
+      <tr>
+        <td style='text-align: left'>
+          <code class='annotation'>paid</code>
+          <code id='quarter-pay-date'
+                class='annotation'></code>
+        </td>
+      </tr>
+
+    </table>
+
+  </div><br>
+
+</div>
+
+<div id='cohort-and-advancement-inputs'
+      hidden>
+
+  <label for='cohort-selection'>Cohort</label><br>
+  <input id='cohort-0-to-5-radio-button'
+         type='radio'
+         name='cohort-selection'
+         value='0-5'>
+  <label for='cohort-0-to-5-radio-button'>0-5</label>
+  <input id='cohort-6-plus-radio-button'
+         type='radio'
+         name='cohort-selection'
+         value='6+'
+         style='margin-left: 1rem'>
+  <label for='cohort-6-plus-radio-button'>6+</label><br><br>
+
+  <label id='did-coach-advance-tiers-question'
+         for='did-coach-advance-tiers'></label><br>
+  <input id='did-coach-advance-tiers-yes'
+         type='radio'
+         name='did-coach-advance-tiers'
+         value='yes'
+         onclick='tierSelectionIsHidden(true)'>
+  <label for='did-coach-advance-tiers-yes'>Yes</label>
+  <input id='did-coach-advance-tiers-no'
+         type='radio'
+         name='did-coach-advance-tiers'
+         value='no'
+         onclick='tierSelectionIsHidden(false)'
+         style='margin-left: 1rem'>
+  <label for='did-coach-advance-tiers-no'>No</label><br><br>
+
+  <span id='tier-selection'
+        hidden>
+
+    <label for='coach-tier'>Tier</label><br>
+    <input id='coach-tier-core'
+           type='radio'
+           name='coach-tier'
+           value='core'>
+    <label for='coach-tier-core'>Core</label>
+    <input id='coach-tier-advanced'
+           type='radio'
+           name='coach-tier'
+           value='advanced'
+           style='margin-left: 1rem'>
+    <label for='coach-tier-core'>Advanced</label>
+    <input id='coach-tier-master'
+           type='radio'
+           name='coach-tier'
+           value='master'
+           style='margin-left: 1rem'>
+    <label for='coach-tier-core'>Master</label><br><br>
+
+  </span>
+
+  <input id='show-quarterly-hour-inputs'
+         type='button'
+         value='Next'
+         onclick='showQuarterlyHourInputs()'>
+
+</div>
+
+<code id='cohort-and-advancement-info'
+      class='accented'></code>
+
+<div id='same-tier-quarterly-hours'
+     hidden>
+
+  <table>
+
+    <tr>
+      <th><label for='quarterly-personal-hours'>Personal hours</label></th>
+      <td><input id='quarterly-personal-hours'
+                         type='text'
+                         class='number'
+                         placeholder='0'
+                         style='width: 1.79rem'></td>
+      <td id='personal-hour-rate'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-creator-hours'>Creator hours</label></th>
+      <td><input id='quarterly-creator-hours'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='creator-hour-rate'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-career-hours'>Career hours</label></th>
+      <td><input id='quarterly-career-hours'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='career-hour-rate'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-group-hours'>Group hours</label></th>
+      <td><input id='quarterly-group-hours'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='group-hour-rate'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-parent-hours'>Parent hours</label></th>
+      <td><input id='quarterly-parent-hours'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='parent-hour-rate'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+  </table><br>
+
+  <input id='calculate-bonus-for-single-tier-button'
+         type='button'
+         value='Calculate bonus'
+         onclick='calculateBonusForSingleTier()'>
+
+</div>
+
+<div id='multi-tier-quarterly-hours'
+     hidden>
+
+  <table>
+
+    <tr>
+      <td colspan='3'><code id='month-1'></code></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-personal-hours-1'>Personal hours</label></th>
+      <td><input id='quarterly-personal-hours-1'
+                         type='text'
+                         class='number'
+                         placeholder='0'
+                         style='width: 1.79rem'></td>
+      <td id='personal-hour-rate-1'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-creator-hours-1'>Creator hours</label></th>
+      <td><input id='quarterly-creator-hours-1'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='creator-hour-rate-1'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-career-hours-1'>Career hours</label></th>
+      <td><input id='quarterly-career-hours-1'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='career-hour-rate-1'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-group-hours-1'>Group hours</label></th>
+      <td><input id='quarterly-group-hours-1'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='group-hour-rate-1'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-parent-hours-1'>Parent hours</label></th>
+      <td><input id='quarterly-parent-hours-1'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='parent-hour-rate-1'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+  </table><br>
+
+  <table>
+
+    <tr>
+      <td colspan='3'><code id='month-2'></code></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-personal-hours-2'>Personal hours</label></th>
+      <td><input id='quarterly-personal-hours-2'
+                         type='text'
+                         class='number'
+                         placeholder='0'
+                         style='width: 1.79rem'></td>
+      <td id='personal-hour-rate-2'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-creator-hours-2'>Creator hours</label></th>
+      <td><input id='quarterly-creator-hours-2'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='creator-hour-rate-2'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-career-hours-2'>Career hours</label></th>
+      <td><input id='quarterly-career-hours-2'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='career-hour-rate-2'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-group-hours-2'>Group hours</label></th>
+      <td><input id='quarterly-group-hours-2'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='group-hour-rate-2'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-parent-hours-2'>Parent hours</label></th>
+      <td><input id='quarterly-parent-hours-2'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='parent-hour-rate-2'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+  </table><br>
+
+  <table>
+
+    <tr>
+      <td colspan='3'><code id='month-3'></code></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-personal-hours-3'>Personal hours</label></th>
+      <td><input id='quarterly-personal-hours-3'
+                         type='text'
+                         class='number'
+                         placeholder='0'
+                         style='width: 1.79rem'></td>
+      <td id='personal-hour-rate-3'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-creator-hours-3'>Creator hours</label></th>
+      <td><input id='quarterly-creator-hours-3'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='creator-hour-rate-3'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-career-hours-3'>Career hours</label></th>
+      <td><input id='quarterly-career-hours-3'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='career-hour-rate-3'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-group-hours-3'>Group hours</label></th>
+      <td><input id='quarterly-group-hours-3'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='group-hour-rate-3'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+    <tr>
+      <th><label for='quarterly-parent-hours-3'>Parent hours</label></th>
+      <td><input id='quarterly-parent-hours-3'
+                                       type='text'
+                                       class='number'
+                                       placeholder='0'
+                                       style='width: 1.79rem'></td>
+      <td id='parent-hour-rate-3'
+          class='annotation'
+          style='padding-left: 1rem'></td>
+    </tr>
+
+  </table><br>
+
+  <input id='calculate-bonus-for-multi-tier-button'
+         type='button'
+         value='Calculate bonus'
+         onclick='calculateBonusForMultiTier()'>
+
+</div>

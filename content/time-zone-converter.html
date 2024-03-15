@@ -1,0 +1,35 @@
+<!-- htmlhint ignore: doctype-first -->
+
+<h3 id='tool-name'>
+  Time zone converter
+  <i class='tooltip
+            fa-solid
+            fa-circle-info'>
+    <span class='tooltip-text'>You can copy and paste the client's timezone from the "Time Zone" section in the client profile.</span>
+  </i>
+</h3>
+
+<datalist id='timezones'></datalist>
+
+<label for='coach-timezone'>Your timezone</label><br>
+<input id='coach-timezone'
+       type='text'
+       list='timezones'
+       style='width: 14rem'><br><br>
+
+<label for='coach-datetime'>Date and time</label><br>
+<input id='coach-datetime'
+       type='datetime-local'><br><br>
+
+<label for='client-timezone'>Client's timezone</label><br>
+<input id='client-timezone'
+       type='text'
+       list='timezones'
+       style='width: 14rem'><br><br>
+
+<button onclick='convertToClientTimezone()'>Convert</button>
+
+<span id='client-datetime-label'
+      hidden='true'><br><br>Client date and time<br></span>
+<span id='client-datetime'
+      class='accented'></span>

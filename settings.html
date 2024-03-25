@@ -1,0 +1,379 @@
+<h3 id='tool-name'>
+  Settings
+  <i class='tooltip
+            fa-solid
+            fa-circle-info'>
+    <div class='tooltip-text'>Here you can configure your preferences for this web application. When you apply the settings, they will stored to your device so they can be loaded next time you visit.</div>
+  </i>
+</h3>
+
+<datalist id='time-zones'></datalist>
+
+<table>
+  <tr class='padding-below'>
+    <th><label for='cohort'>Cohort</label></th>
+    <td>
+      <input id='cohort-0-to-5-radio-button'
+             type='radio'
+             name='cohort'
+             value='0-5'>
+      <label for='cohort-0-to-5-radio-button'>0-5</label>
+      <input id='cohort-6-plus-radio-button'
+             type='radio'
+             name='cohort'
+             value='6+'>
+      <label for='cohort-6-plus-radio-button'>6+</label>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr class='padding-below'>
+    <th><label for='tier'>Tier</label></th>
+    <td>
+      <input id='core-tier'
+             type='radio'
+             name='tier'
+             value='core'>
+      <label for='core-tier'>Core</label>
+      <input id='advanced-tier'
+             type='radio'
+             name='tier'
+             value='advanced'>
+      <label for='advanced-tier'>Advanced</label>
+      <input id='master-tier'
+             type='radio'
+             name='tier'
+             value='master'>
+      <label for='master-tier'>Master</label>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th><label for='default-time-zone'>Default time zone</label></th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <input id='default-time-zone'
+             type='text'
+             class='time-zone'
+             list='time-zones'>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th><label for='datetime-format-preview'>Date and time format (preview)</label></th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <code id='datetime-format-preview'
+            class='accented'></code>
+    </td>
+  </tr>
+</table>
+
+<button id='date-format-settings-button'
+        onclick='toggleDateFormatSettingsVisibility()'>Date format settings</button>
+
+<div id='date-format-settings'
+     hidden><br>
+
+  <table>
+    <tr>
+      <th colspan='3'><label for='date-order-setting'>Date order</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='date-order-ymd'
+               type='radio'
+               name='date-order-setting'
+               value='year month day'>
+        <label for='date-order-ymd'>year month day</label>
+      </td>
+      <td class='padding-left'>
+        <input id='date-order-dmy'
+               type='radio'
+               name='date-order-setting'
+               value='day month year'>
+        <label for='date-order-dmy'>day month year</label>
+      </td>
+      <td class='padding-left'>
+        <input id='date-order-mdy'
+               type='radio'
+               name='date-order-setting'
+               value='month day year'>
+        <label for='date-order-mdy'>month day year</label>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th colspan='3'><label for='day-of-the-week-setting'>Day of the week</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='no-dotw'
+               type='radio'
+               name='day-of-the-week-setting'
+               value='none'>
+        <label for='no-dotw'>none</label>
+      </td>
+      <td class='padding-left'>
+        <input id='prepend-dotw'
+               type='radio'
+               name='day-of-the-week-setting'
+               value='prepend'>
+        <label for='prepend-dotw'>prepend</label>
+      </td>
+      <td class='padding-left'>
+        <input id='append-dotw'
+               type='radio'
+               name='day-of-the-week-setting'
+               value='append'>
+        <label for='append-dotw'>(append)</label>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th colspan='3'><label for='year-format-setting'>Year format</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='4-digit-year'
+               type='radio'
+               name='year-format-setting'
+               value='YYYY'>
+        <label for='4-digit-year'>4-digit</label>
+      </td>
+      <td class='padding-left'>
+        <input id='2-digit-year'
+               type='radio'
+               name='year-format-setting'
+               value='YY'>
+        <label for='2-digit-year'>2-digit</label>
+      </td>
+      <td class='padding-left'>
+        <input id='2-digit-apostrophized'
+               type='radio'
+               name='year-format-setting'
+               value="[']YY">
+        <label for='2-digit-apostrophized'>2-digit (apostrophized)</label>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th colspan='4'><label for='month-format-setting'>Month format</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='0-padded-number-month'
+               type='radio'
+               name='month-format-setting'
+               value='MM'>
+        <label for='0-padded-number-month'>0-padded number</label>
+      </td>
+      <td class='padding-left'>
+        <input id='number-month'
+               type='radio'
+               name='month-format-setting'
+               value='M'>
+        <label for='number-month'>number</label>
+      </td>
+      <td class='padding-left'>
+        <input id='abbreviated-month'
+               type='radio'
+               name='month-format-setting'
+               value='MMM'>
+        <label for='abbreviated-month'>abbreviated</label>
+      </td>
+      <td class='padding-left'>
+        <input id='full-month'
+               type='radio'
+               name='month-format-setting'
+               value='MMMM'>
+        <label for='full-month'>full</label>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th colspan='3'><label for='day-format-setting'>Day format</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='0-padded-number-day'
+               type='radio'
+               name='day-format-setting'
+               value='DD'>
+        <label for='0-padded-number-day'>0-padded number</label>
+      </td>
+      <td class='padding-left'>
+        <input id='number-day'
+               type='radio'
+               name='day-format-setting'
+               value='D'>
+        <label for='number-day'>number</label>
+      </td>
+      <td class='padding-left'>
+        <input id='ordinal-day'
+               type='radio'
+               name='day-format-setting'
+               value='Do'>
+        <label for='ordinal-day'>ordinal</label>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th colspan='3'><label for='date-separator-setting'>Date separator</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='hyphen-separator'
+               type='radio'
+               name='date-separator-setting'
+               value='-'>
+        <label for='hyphen-separator'>hyphen</label>
+      </td>
+      <td class='padding-left'>
+        <input id='slash-separator'
+               type='radio'
+               name='date-separator-setting'
+               value='/'>
+        <label for='slash-separator'>slash</label>
+      </td>
+      <td class='padding-left'>
+        <input id='space-separator'
+               type='radio'
+               name='date-separator-setting'
+               value='space'>
+        <label for='space-separator'>space</label>
+      </td>
+    </tr>
+  </table>
+
+</div><br><br>
+
+<button id='time-format-settings-button'
+        class='display-block'
+        onclick='toggleTimeFormatSettingsVisibility()'>Time format settings</button>
+
+<div id='time-format-settings'
+     hidden><br>
+
+  <table>
+    <tr>
+      <th colspan='2'><label for='clock-format-setting'>Clock format</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='24-hour-clock'
+               type='radio'
+               name='clock-format-setting'
+               value='H'>
+        <label for='24-hour-clock'>24-hour</label>
+      </td>
+      <td class='padding-left'>
+        <input id='12-hour-clock'
+               type='radio'
+               name='clock-format-setting'
+               value='h'>
+        <label for='12-hour-clock'>12-hour</label>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th colspan='2'><label for='hour-format-setting'>Hour format</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='0-padded-number-hour'
+               type='radio'
+               name='hour-format-setting'
+               value='2'>
+        <label for='0-padded-number-hour'>0-padded number</label>
+      </td>
+      <td class='padding-left'>
+        <input id='number-hour'
+               type='radio'
+               name='hour-format-setting'
+               value='1'>
+        <label for='number-hour'>number</label>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th colspan='4'><label for='am-pm-format-setting'>AM/PM format (12-hour only)</label></th>
+    </tr>
+    <tr>
+      <td>
+        <input id='lowercase-am-pm'
+               type='radio'
+               name='am-pm-format-setting'
+               value='a'>
+        <label for='lowercase-am-pm'>am/pm</label>
+      </td>
+      <td class='padding-left'>
+        <input id='lowercase-spaced-am-pm'
+               type='radio'
+               name='am-pm-format-setting'
+               value=' a'>
+        <label for='lowercase-spaced-am-pm'>am/pm (spaced)</label>
+      </td>
+      <td class='padding-left'>
+        <input id='uppercase-am-pm'
+               type='radio'
+               name='am-pm-format-setting'
+               value='A'>
+        <label for='uppercase-am-pm'>AM/PM</label>
+      </td>
+      <td class='padding-left'>
+        <input id='uppercase-spaced-am-pm'
+               type='radio'
+               name='am-pm-format-setting'
+               value=' A'>
+        <label for='uppercase-spaced-am-pm'>AM/PM (spaced)</label>
+      </td>
+    </tr>
+  </table>
+
+</div><br><br>
+
+<div class='space-between'>
+  <div>
+    <button onclick='applySettings()'>Apply</button>
+    <span id='unsaved-warning'
+          class='warning
+                 padding-left'
+          hidden>
+      <i class='fa-solid
+                fa-circle-exclamation'></i>
+      You have unsaved changes
+    </span>
+    <span id='save-indicator'
+          class='accented
+                 padding-left'
+          hidden>
+      <i class='fa-solid
+                fa-check'></i>
+      Saved to device
+    </span>
+  </div>
+
+  <button onclick='revertToDefaultSettings()'>Revert to defaults</button>
+</div>

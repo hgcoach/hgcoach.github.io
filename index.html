@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang='en' data-theme='dark'>
+
+  <head>
+    <link rel='stylesheet'
+          href='app.css'>
+    <title>HG Coach Toolkit</title>
+    <link rel='icon'
+          type='image/x-icon'
+          href='images/favicon.svg'>
+  </head>
+
+  <body>
+
+    <div id='content'>
+
+      <header>
+
+        <div id='page-title-row'>
+
+          <!-- Page title -->
+          <i id='logo'
+             class='fa-solid fa-screwdriver-wrench'></i>
+          <h1>HG Coach Toolkit</h1>
+
+          <!-- Theme toggle -->
+          <button id='theme-toggle'
+                  onclick='toggleTheme()'>
+            <i class='fa-solid fa-moon'
+               hidden></i>
+            <i class='fa-solid fa-sun'></i>
+          </button>
+
+          <!-- Settings -->
+          <button id='settings'
+                  onclick='loadTool("settings");'>
+            <i class='fa-solid fa-cog'></i>
+          </button>
+
+        </div>
+
+        <div id='navigation-bar'>
+          <button class='left'
+                  onclick='loadTool("time-zone-converter")'>Time zone<br>converter</button>
+          <button onclick='loadTool("dst-lookup")'>When is DST</button>
+          <button onclick='loadTool("average-hours-calculator")'>Average hours<br>calculator</button>
+          <button onclick='loadTool("median-calculator")'>Median<br>calculator</button>
+          <button class='right'
+                  onclick='loadTool("bonus-calculator")'>Bonus<br>calculator</button>
+        </div>
+
+      </header>
+
+      <main>
+
+          <div id='loading-indicator-container'>
+            <div class='loading-indicator'>
+              <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            </div>
+          </div>
+
+          <div id='tool-container' hidden></div>
+
+      </main>
+
+      <footer>
+        <div id='disclaimer'>
+          This website is unaffiliated with HG, may not be actively maintained, and may not be 100% reliable.<br>If you encounter a problem or have a suggestion, feel free to message
+          <span class='discord'>
+            <i class='fa-brands fa-discord'></i>
+          sim_hg
+          </span>.
+        </div>
+      </footer>
+
+    </div>
+
+    <!-- Font Awesome -->
+    <script src='https://kit.fontawesome.com/e6dcd170d4.js'
+            crossorigin='anonymous'></script>
+
+    <!-- Day.js -->
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/dayjs.min.js'></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/duration.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/utc.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/timezone.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/advancedFormat.js'></script>
+    <script>dayjs.extend(window.dayjs_plugin_duration);</script>
+    <script>dayjs.extend(window.dayjs_plugin_utc);</script>
+    <script>dayjs.extend(window.dayjs_plugin_timezone);</script>
+    <script>dayjs.extend(window.dayjs_plugin_advancedFormat);</script>
+
+    <!-- Moment.js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js'></script>
+    <script>moment().format();</script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.45/moment-timezone.min.js'></script>
+    <script src='https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js'></script>
+
+    <!-- jQuery -->
+    <script src='scripts/jquery-3.7.1.js'></script>
+
+    <!-- Custom scripts -->
+    <script src='scripts/utilities.js'></script>
+    <script src='scripts/settings.js'></script>
+    <script src='scripts/theme.js'></script>
+    <script src='scripts/cohortAndTier.js'></script>
+    <script src='scripts/timeZone.js'></script>
+    <script src='scripts/datetime.js'></script>
+    <script src='scripts/timeZoneConverter.js'></script>
+    <script src='scripts/dstLookup.js'></script>
+    <script src='scripts/averageHoursCalculator.js'></script>
+    <script src='scripts/medianCalculator.js'></script>
+    <script src='scripts/bonusCalculator.js'></script>
+    <script src='scripts/app.js'></script>
+
+  </body>
+
+</html>

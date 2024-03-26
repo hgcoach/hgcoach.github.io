@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h3 id='tool-name'>
   Average hours calculator
   <i class='tooltip fa-solid fa-circle-info'>
@@ -152,3 +153,159 @@
       hidden></span>
 
 </div>
+=======
+<h3 id='tool-name'>
+  Average hours calculator
+  <i class='tooltip fa-solid fa-circle-info'>
+    <div class='tooltip-text'>Cohort 0-3 Master Coaches who averaged at least 20 worked coaching hours (in the 3 or 6 months preceding the end of a billing period) should qualify for the $200 monthly retention fee.</div>
+  </i>
+</h3>
+
+<table class='max-width'>
+  <tr>
+    <th><label for='billing-period-end-year'>Billing period end date</label></th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <span class='space-between'>
+        <span>
+          <span id='editable-billing-period-end-date'>
+            <input type='text'
+                   class='year number'
+                   id='billing-period-end-year'
+                   placeholder='yyyy'
+                   title='Full year number'>
+            <select id='billing-period-end-month'
+                    onchange='setInputSelectionColor("billing-period-end-month")'>
+              <option value=''
+                      class='placeholder'
+                      selected
+                      hidden>mm</option>
+              <option value='1'
+                      class='normal-color'>Jan</option>
+              <option value='2'
+                      class='normal-color'>Feb</option>
+              <option value='3'
+                      class='normal-color'>Mar</option>
+              <option value='4'
+                      class='normal-color'>Apr</option>
+              <option value='5'
+                      class='normal-color'>May</option>
+              <option value='6'
+                      class='normal-color'>Jun</option>
+              <option value='7'
+                      class='normal-color'>Jul</option>
+              <option value='8'
+                      class='normal-color'>Aug</option>
+              <option value='9'
+                      class='normal-color'>Sep</option>
+              <option value='10'
+                      class='normal-color'>Oct</option>
+              <option value='11'
+                      class='normal-color'>Nov</option>
+              <option value='12'
+                      class='normal-color'>Dec</option>
+            </select>
+            <span id='billing-period-end-day'>25th</span>
+          </span>
+          <span id='billing-period-end-date'
+                class='accented'></span>
+          <span class='annotation'>(23:59 UTC)</span>
+        </span>
+        <button id='billing-period-date-reset-button'
+                onclick='resetAverageWeeklyHoursCalculator()'
+                hidden>Reset</button>
+      </span>
+    </td>
+  </tr>
+</table>
+
+<button id='calculate-date-ranges-button'
+        onclick='calculateStartDates()'>Calculate date ranges</button>
+
+<div id='worked-hours-inputs' hidden>
+
+  <table>
+    <tr>
+      <th>
+        <label for='6-month-worked-hours'>
+          <span>Enter hours worked since</span>
+          <span id='6-month-start-date'
+                class='accented'></span>
+          <span class='annotation'>(00:00 UTC)</span>
+        </label>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <input type='text'
+               class='number'
+               id='6-month-worked-hours'
+               placeholder='0'
+               title='Non-negative number'
+               style='width: 1.79rem'>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for='3-month-worked-hours'>
+          <span>Enter hours worked since</span>
+          <span id='3-month-start-date'
+                class='accented'></span>
+          <span class='annotation'>(00:00 UTC)</span>
+        </label>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <input type='text'
+               class='number'
+               id='3-month-worked-hours'
+               placeholder='0'
+               title='Non-negative number'
+               style='width: 1.79rem'>
+      </td>
+    </tr>
+  </table>
+
+  <button id='calculate-average-hours-button'
+          onclick='calculateAverageWeeklyHours()'>Calculate</button>
+
+</div>
+
+<div id='average-hours-results' hidden><br><br>
+
+  <table class='max-width'>
+    <tr>
+      <th>
+        <span for='average-weekly-hours'>Average weekly hours</span>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <span id='average-weekly-hours'
+          class='accented'></span>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <span for='hours-needed'>Hours needed</span>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <span class='space-between'>
+          <span id='hours-needed'
+                class='accented'></span>
+          <button id='toggle-average-hours-breakdown-button'
+                  onclick='toggleAverageHoursBreakdown()'>Show breakdown</button>
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <span id='average-weekly-hours-breakdown'
+      hidden></span>
+
+</div>
+>>>>>>> 4a789041cc4bf8c8831c5515259e265ce84182bc

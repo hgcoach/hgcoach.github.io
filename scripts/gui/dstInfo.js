@@ -241,8 +241,8 @@ function displayWorldwideTimeChanges() {
     const nowUnix = +dayjs();
     let recentTimeChanges = [];
     let upcomingTimeChanges = [];
-    const dayInMilliseconds = 24 * 60 * 60 * 1000;
     const months = 2;
+    const dayInMilliseconds = 24 * 60 * 60 * 1000;
     const maxDelta = months * 31 * dayInMilliseconds;
 
     for (const timeZone of timeZones) {
@@ -285,6 +285,7 @@ function displayWorldwideTimeChanges() {
         recentTimeChangeRows += `
             <tr>
               <th>None in the last ${months} ${months === 1 ? 'month' : 'months'}</th>
+              <td></td>
             </tr>
             `;
     }

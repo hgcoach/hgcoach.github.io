@@ -901,7 +901,7 @@ button.icon.selected > i {
 :is(#recent-time-changes,
     #upcoming-time-changes) tr:nth-child(odd) {
   background-color: var(--color-input-background);
-} 
+}
 
 :is(#recent-time-changes,
     #upcoming-time-changes) td {

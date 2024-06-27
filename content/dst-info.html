@@ -1,0 +1,112 @@
+<h3 id='tool-name'>
+  DST info
+  <i class='tooltip fa-solid fa-circle-info accented'>
+    <div class='tooltip-text below'>DST stands for Daylight Saving Time.<br><br>You can copy and paste the client's time zone from the "Time Zone" section in the client profile.<br><br>The "from" date is the time and time zone right before the time change, and the "to" date is right after.<br><br>The green dates are shown in the selected time zone, and the grey dates are shown in your system (or default) time zone.<br><br>You can find a full list of "TZ identifiers" <a href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List'>here</a>.</div>
+  </i>
+</h3>
+
+<div id='recent-time-changes-container'>
+  <table>
+    <tr>
+      <th colspan='2'>Recent time changes</th>
+    </tr>
+    <tbody id='recent-time-changes'></tbody>
+  </table>
+</div><br>
+
+<div id='upcoming-time-changes-container'>
+  <table>
+    <tr>
+      <th colspan='2'>Upcoming time changes</th>
+    </tr>
+    <tbody id='upcoming-time-changes'></tbody>
+  </table>
+</div><br>
+
+<hr><br>
+
+<div class='notice'>Time zone-specific DST info currently in development.</div><br>
+
+<!-- <table>
+  <tr>
+    <th>
+      <label for='time-zone'>Time zone</label>
+    </th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <select id='time-zone'></select>
+      <i id='dst-warning'
+         class='tooltip
+                fa-solid
+                fa-circle-exclamation'
+         hidden>
+        <div class='tooltip-text right'>Make sure you have selected the locale's true year-round time zone and not one of its semi-annual time zones.</div>
+      </i>
+    </td>
+  </tr>
+</table>
+
+<button onclick='getDstData()'>Get data</button><br><br>
+
+<table>
+  <tr>
+    <th colspan='2'>Next time change</th>
+  </tr>
+  <tr>
+    <td id='next-change-days'
+        class='annotation'
+        colspan='2'></td>
+  </tr>
+  <tr>
+    <td id='next-change-prefix'
+        class='annotation text-align-right'
+        hidden>from<br>to</td>
+    <td id='next-change'
+        class='accented'>...</td>
+  </tr>
+  <tr>
+    <td id='next-change-local-label'
+        colspan='2'
+        class='annotation'
+        hidden>which is equivalent to...</td>
+  </tr>
+  <tr>
+    <td id='next-change-local-prefix'
+        class='annotation text-align-right'
+        hidden>from<br>to</td>
+    <td id='next-change-local'
+        class='annotation'></td>
+  </tr>
+</table><br>
+
+<table>
+  <tr>
+    <th colspan='2'>Last time change</th>
+  </tr>
+  <tr>
+    <td id='last-change-days'
+        class='annotation'
+        colspan='2'></td>
+  </tr>
+  <tr>
+    <td id='last-change-prefix'
+        class='annotation text-align-right'
+        hidden>from<br>to</td>
+    <td id='last-change'
+        class='accented'>...</td>
+  </tr>
+  <tr>
+    <td id='last-change-local-label'
+        colspan='2'
+        class='annotation'
+        hidden>which is equivalent to...</td>
+  </tr>
+  <tr>
+    <td id='last-change-local-prefix'
+        class='annotation text-align-right'
+        hidden>from<br>to</td>
+    <td id='last-change-local'
+        class='annotation'></td>
+  </tr>
+</table> -->

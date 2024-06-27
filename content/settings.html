@@ -1,0 +1,264 @@
+<h3 id='tool-name'>
+  Settings
+  <i class='tooltip fa-solid fa-circle-info accented'>
+    <div class='tooltip-text below'>Here you can configure your preferences for this web application. When you apply the settings, they will stored to your device so they can be loaded next time you visit.</div>
+  </i>
+</h3>
+
+<div id='settings-disabled'
+     hidden>
+  <div id='settings-disabled-message' class='notice text-align-center'>
+    Web storage is required to save settings to your device,<br>
+    but it is currently disabled in your browser's settings.<br><br>
+    Web storage permissions are usually<br>disabled when cookies are disabled.
+  </div>
+</div>
+
+<div id='settings-enabled'>
+
+  <table id='cohort-and-tier'>
+    <tr class='padding-below'>
+      <th class='text-align-right'><label for='cohort'>Cohort</label></th>
+      <td class='padding-left'>
+        <select id='cohort'>
+          <option value='--'
+                  class='placeholder'>--</option>
+          <option value='0-5'
+                  class='normal-color'>0-5</option>
+          <option value='6+'
+                  class='normal-color'>6+</option>
+        </select>
+        <i class='tooltip fa-solid fa-circle-info'>
+          <div class='tooltip-text right'>Your cohort affects your incentive rates.</div>
+        </i>
+      </td>
+    </tr>
+    <tr class='padding-below'>
+      <th class='text-align-right'><label for='tier'>Tier</label></th>
+      <td class='padding-left'>
+        <select id='tier'>
+          <option value='--'
+                  class='placeholder'>--</option>
+          <option value='core'
+                  class='normal-color'>Core</option>
+          <option value='advanced'
+                  class='normal-color'>Advanced</option>
+          <option value='master'
+                  class='normal-color'>Master</option>
+        </select>
+        <i class='tooltip fa-solid fa-circle-info'>
+          <div class='tooltip-text right'>Your tier affects your incentive rates.</div>
+        </i>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th>Date and time format (preview)</th>
+    </tr>
+    <tr class='padding-below'>
+      <td id='datetime-format-preview'
+          class='accented'>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th>
+        <label for='default-time-zone'>Default time zone</label>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <select id='default-time-zone'></select>
+      </td>
+    </tr>
+  </table>
+
+  <button id='date-format-settings-button'
+          class='display-block'
+          onclick='toggleDateFormatSettingsVisibility()'>Date format settings</button>
+
+  <div id='date-format-settings'
+       hidden><br>
+
+    <table>
+      <tr>
+        <th><label for='date-order-setting'>Date order</label></th>
+        <td class='padding-left'>
+          <select id='date-order-setting'>
+            <option value='month day year'>month day year</option>
+            <option value='day month year'>day month year</option>
+            <option value='year month day'>year month day</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='day-of-the-week-setting'>Day of the week</label></th>
+        <td class='padding-left'>
+          <select id='day-of-the-week-setting'>
+            <option value='dddd'>full</option>
+            <option value='ddd'>abbreviated</option>
+            <option value='none'>none</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='year-format-setting'>Year format</label></th>
+        <td class='padding-left'>
+          <select id='year-format-setting'>
+            <option value='YYYY'>4-digit</option>
+            <option value='YY'>2-digit</option>
+            <option value="[']YY">2-digit (apostrophized)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='month-format-setting'>Month format</label></th>
+        <td class='padding-left'>
+          <select id='month-format-setting'>
+            <option value='MMMM'>full</option>
+            <option value='MMM'>abbreviated</option>
+            <option value='MM'>0-padded number</option>
+            <option value='M'>number</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='day-format-setting'>Day format</label></th>
+        <td class='padding-left'>
+          <select id='day-format-setting'>
+            <option value='DD'>0-padded number</option>
+            <option value='D'>number</option>
+            <option value='Do'>ordinal</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='date-separator-setting'>Date separator</label></th>
+        <td class='padding-left'>
+          <select id='date-separator-setting'>
+            <option value=' '>space</option>
+            <option value='/'>slash</option>
+            <option value='-'>hyphen</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='comma-setting'>Use commas</label></th>
+        <td class='padding-left'>
+          <select id='comma-setting'>
+            <option value=','>commas</option>
+            <option value=''>no commas</option>
+          </select>
+          <i class='tooltip fa-solid fa-circle-info'>
+            <div class='tooltip-text right'>A comma will separate the day of the week from the date if the day of the week is not 'none' and the date separator is 'space'.<br><br>A comma will separate the day of the month from the year if the date order is 'month day year' and the date separator is 'space'.</div>
+          </i>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='the-setting'>Use 'the'</label></th>
+        <td class='padding-left'>
+          <select id='the-setting'>
+            <option value='[the] '>the</option>
+            <option value=''>no the</option>
+          </select>
+          <i class='tooltip fa-solid fa-circle-info'>
+            <div class='tooltip-text right'>A 'the' will precede the day of the month if the day of the week is not 'none', the date order is 'day month year', the date separator is 'space', and the day format is 'ordinal'.</div>
+          </i>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='of-setting'>Use 'of'</label></th>
+        <td class='padding-left'>
+          <select id='of-setting'>
+            <option value=' [of]'>of</option>
+            <option value=''>no of</option>
+          </select>
+          <i class='tooltip fa-solid fa-circle-info'>
+            <div class='tooltip-text right'>An 'of' will follow the day of the month if the day of the week is not 'none', the date order is 'day month year', the date separator is 'space', and the day format is 'ordinal'.</div>
+          </i>
+        </td>
+      </tr>
+    </table>
+
+  </div><br>
+
+  <button id='time-format-settings-button'
+          class='display-block'
+          onclick='toggleTimeFormatSettingsVisibility()'>Time format settings</button>
+
+  <div id='time-format-settings'
+       hidden><br>
+
+    <table>
+      <tr>
+        <th><label for='at-setting'>Use 'at'</label></th>
+        <td class='padding-left'>
+          <select id='at-setting'>
+            <option value='[at] '>at</option>
+            <option value=''>no at</option>
+          </select>
+          <i class='tooltip fa-solid fa-circle-info'>
+            <div class='tooltip-text right'>An 'at' will appear between the date and time.</div>
+          </i>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='clock-format-setting'>Clock format</label></th>
+        <td class='padding-left'>
+          <select id='clock-format-setting'>
+            <option value='24'>24-hour</option>
+            <option value='12'>12-hour</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='hour-format-setting'>Hour format</label></th>
+        <td class='padding-left'>
+          <select id='hour-format-setting'>
+            <option value='2'>0-padded number</option>
+            <option value='1'>number</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for='am-pm-format-setting'>AM/PM format</label></th>
+        <td class='padding-left'>
+          <select id='am-pm-format-setting'>
+            <option value='a'>am/pm</option>
+            <option value=' a'>am/pm (spaced)</option>
+            <option value='A'>AM/PM</option>
+            <option value=' A'>AM/PM (spaced)</option>
+          </select>
+          <i class='tooltip fa-solid fa-circle-info'>
+            <div class='tooltip-text right'>The meridiem indicator will follow the time when using 12-hour clock format.</div>
+          </i>
+        </td>
+      </tr>
+    </table>
+
+  </div><br><br>
+
+  <div id='unsaved-warning'
+       class='warning padding-below'
+       hidden>
+    <i class='fa-solid
+              fa-circle-exclamation'></i>
+    Unsaved changes
+  </div>
+  <div id='save-indicator'
+       class='accented padding-below'
+       hidden>
+    <i class='fa-solid
+              fa-check'></i>
+    Saved to device
+  </div>
+  <div class='space-between'>
+    <button onclick='applySettings()'>Apply</button>
+    <button onclick='revertToDefaultSettings()'>Revert to defaults</button>
+  </div>
+
+</div>

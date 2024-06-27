@@ -1,0 +1,107 @@
+<h3 id='tool-name'>
+  Median hours calculator
+  <i class='tooltip fa-solid fa-circle-info accented'>
+    <div class='tooltip-text below'>The median is the midpoint of a sorted set of data.<br><br>Coaches receive an incentive for each threshold reached by their median weekly coaching hours during a quarter. These thresholds are 13, 17, 20, and 24 hours.</div>
+  </i>
+</h3>
+
+<div class='notice'>There may be a small discrepancy between these numbers and the ones you see on your HG Dashboard. Neither calculation can yield a true median if the date range includes partial calendar weeks.</div><br>
+
+<div id='quarter-inputs'>
+
+  <table>
+    <tr>
+      <th><label for='year-of-quarter'>Quarter</label></th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <input id='year-of-quarter'
+               type='text'
+               placeholder='yyyy'
+               class='year'>
+        <select id='quarter-selection'>
+          <option value='Q1'>Q1</option>
+          <option value='Q2'>Q2</option>
+          <option value='Q3'>Q3</option>
+          <option value='Q4'>Q4</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+
+  <button id='calculate-date-intervals-button'
+          onclick='calculateCalendarWeekIntervals()'>Calculate date intervals</button>
+
+</div>
+
+<div id='calculated-quarter-info'
+     hidden>
+
+  <div class='space-between'>
+    <span>
+      HG's
+      <span id='quarter'
+            class='accented'></span>
+      <span>is:</span>
+    </span>
+    <button id='reset-quarter-date-range-button'
+            onclick='resetMedianCalculator()'>Reset</button> 
+  </div>
+
+  <table>
+    <tr>
+      <td class='annotation text-align-right'>from</td>
+      <td>
+        <span id='quarter-start-date'
+              class='accented'></span>
+        <span class='annotation'>(00:00 UTC)</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='annotation text-align-right'>to</td>
+      <td>
+        <span id='quarter-end-date'
+              class='accented'></span>
+        <span class='annotation'>(23:59 UTC)</span>
+      </td>
+    </tr>
+    <tr class='padding-below'>
+      <td class='annotation text-align-right'>paid</td>
+      <td>
+        <span id='quarter-pay-date'
+              class='annotation'></span>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<div id='date-interval-section' hidden>
+  <hr>
+  <table id='date-intervals'></table>
+</div>
+
+<button id='calculate-median-button'
+        onclick='calculateMedian()'
+        hidden>Calculate median</button>
+
+<div id='median-results' hidden><br>
+
+  <table>
+    <tr>
+      <th>
+        <label for='median'>Median hours</label>
+      </th>
+    </tr>
+    <tr class='padding-below expand-last-child'>
+      <td id='median' class='accented'></td>
+      <td class='text-align-right'>
+        <button id='toggle-median-breakdown-button'
+                onclick='toggleMedianBreakdown()'>Show breakdown</button>
+      </td>
+    </tr>
+  </table>
+
+  <div id='median-breakdown' hidden>Median breakdown not yet implemented.</div>
+
+</div>

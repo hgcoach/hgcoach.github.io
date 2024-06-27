@@ -1,0 +1,137 @@
+<h3 id='tool-name'>
+  Average hours calculator
+  <i class='tooltip fa-solid fa-circle-info accented'>
+    <div class='tooltip-text below'>Cohort 0-3 Master Coaches who averaged at least 20 worked coaching hours (in the 3 or 6 months preceding the end of a billing period) should qualify for the monthly retention fee.</div>
+  </i>
+</h3>
+
+<div class='notice'>Expect to see a small discrepancy between these numbers and the ones you see on your HG Dashboard. Currently, HG uses a calendar week bucketing system that, due to partial weeks being treated as whole weeks, tends to slightly dilute your average weekly hours. This calculator should compute the true weekly average.</div><br>
+
+<table class='max-width'>
+  <tr>
+    <th><label for='billing-period-end-year'>Billing period end date</label></th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <span class='space-between'>
+        <span>
+          <span id='editable-billing-period-end-date'>
+            <input type='text'
+                   class='year number'
+                   id='billing-period-end-year'
+                   placeholder='yyyy'
+                   title='Full year number'>
+            <select id='billing-period-end-month'>
+              <option value='1'>Jan</option>
+              <option value='2'>Feb</option>
+              <option value='3'>Mar</option>
+              <option value='4'>Apr</option>
+              <option value='5'>May</option>
+              <option value='6'>Jun</option>
+              <option value='7'>Jul</option>
+              <option value='8'>Aug</option>
+              <option value='9'>Sep</option>
+              <option value='10'>Oct</option>
+              <option value='11'>Nov</option>
+              <option value='12'>Dec</option>
+            </select>
+            <span id='billing-period-end-day'>25th</span>
+          </span>
+          <span id='billing-period-end-date'
+                class='accented'></span>
+          <span class='annotation'>(23:59 UTC)</span>
+        </span>
+        <button id='billing-period-date-reset-button'
+                onclick='resetAverageWeeklyHoursCalculator()'
+                hidden>Reset</button>
+      </span>
+    </td>
+  </tr>
+</table>
+
+<button id='calculate-date-ranges-button'
+        onclick='calculateStartDates()'>Calculate date ranges</button>
+
+<div id='worked-hours-inputs' hidden>
+
+  <table>
+    <tr>
+      <th>
+        <label for='6-month-worked-hours'>
+          <span>Enter hours worked since</span><br>
+          <span id='6-month-start-date'
+                class='accented'></span>
+          <span class='annotation'>(00:00 UTC)</span>
+        </label>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <input type='text'
+               class='four-numbers'
+               id='6-month-worked-hours'
+               placeholder='0'
+               title='Non-negative number'>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for='3-month-worked-hours'>
+          <span>Enter hours worked since</span><br>
+          <span id='3-month-start-date'
+                class='accented'></span>
+          <span class='annotation'>(00:00 UTC)</span>
+        </label>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <input type='text'
+               class='four-numbers'
+               id='3-month-worked-hours'
+               placeholder='0'
+               title='Non-negative number'>
+      </td>
+    </tr>
+  </table>
+
+  <button id='calculate-average-hours-button'
+          onclick='calculateAverageWeeklyHours()'>Calculate</button>
+
+</div>
+
+<div id='average-hours-results' hidden><br><br>
+
+  <table class='max-width'>
+    <tr>
+      <th>
+        <span for='average-weekly-hours'>Average weekly hours</span>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <span id='average-weekly-hours'
+          class='accented'></span>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <span for='hours-needed'>Hours needed</span>
+      </th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <span class='space-between'>
+          <span id='hours-needed'
+                class='accented'></span>
+          <button id='toggle-average-hours-breakdown-button'
+                  onclick='toggleAverageHoursBreakdown()'>Show breakdown</button>
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <div id='average-weekly-hours-breakdown'
+      hidden></div>
+
+</div>

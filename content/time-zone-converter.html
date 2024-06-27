@@ -1,0 +1,66 @@
+<h3 id='tool-name'>
+  Time zone converter
+  <i class='tooltip fa-solid fa-circle-info accented'>
+    <div class='tooltip-text below'>You can copy and paste the client's time zone from the "Time Zone" section in the client profile.<br><br>You can find a full list of "TZ identifiers" <a href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List'>here</a>.</div>
+  </i>
+</h3>
+
+<table>
+  <tr>
+    <th>
+      <label for='original-time-zone'>Original time zone</label>
+    </th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <select id='original-time-zone'></select>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th><label for='original-date'>Original date</label></th>
+    <th><label for='original-time'>Original time</label></th>
+  </tr>
+  <tr class='padding-below'>
+    <td><input id='original-date'
+               type='date'
+               placeholder=''></td>
+    <td><input id='original-time'
+               type='time'></td>
+  </tr>
+</table>
+
+<button onclick='populateCurrentTime()'>Use current time</button><br><br>
+
+<table>
+  <tr>
+    <th>
+      <label for='new-time-zone'>New time zone</label>
+    </th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <select id='new-time-zone'></select>
+    </td>
+  </tr>
+</table>
+
+<button onclick='convertToNewTimeZone()'>Convert</button>
+
+<div id='time-zone-conversion-results'
+     hidden><br>
+
+  <div>Original date and time</div>
+  <div id='original-datetime'
+       class='annotation'></div><br>
+
+  <div>New date and time</div>
+  <div id='new-datetime'
+       class='accented'></div><br>
+
+  <button id='switch-clock-format-button'
+          onclick='switchClockFormatForConverter(this)'></button>
+
+</div>

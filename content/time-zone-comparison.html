@@ -1,0 +1,89 @@
+<h3 id='tool-name'>
+  Time zone comparison
+  <i class='tooltip fa-solid fa-circle-info accented'>
+    <div class='tooltip-text below'>This tool will show you recent and upcoming session times for you and your client.<br><br>The anchor will determine whose clock time the session will be anchored to in the event of time changes. If the clock time is different than the previous session, it will be highlighted yellow.<br><br>You can copy and paste the client's time zone from the "Time Zone" section in the client profile.<br><br>You can find a full list of "TZ identifiers" <a href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List'>here</a>.</div>
+  </i>
+</h3>
+
+<table>
+  <tr>
+    <th>
+      <button id='coach-time-zone-anchor' class='icon' onclick='setAnchor(this.id)'>
+        <i class='fa-solid fa-anchor annotation'></i>
+      </button>
+      <label for='coach-time-zone'>Coach time zone</label>
+    </th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <select id='coach-time-zone'></select>
+      <i id='coach-dst-warning' class='tooltip fa-solid fa-circle-exclamation warning' hidden>
+        <div class='tooltip-text right'>Make sure you have selected the coach locale's true year-round time zone and not one of its semi-annual time zones.</div>
+      </i>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>
+      <button id='client-time-zone-anchor' class='icon' onclick='setAnchor(this.id)'>
+        <i class='fa-solid fa-anchor annotation'></i>
+      </button>
+      <label for='client-time-zone'>Client time zone</label>
+    </th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <select id='client-time-zone'></select>
+      <i id='client-dst-warning' class='tooltip fa-solid fa-circle-exclamation warning' hidden>
+        <div class='tooltip-text right'>Make sure you have selected the client locale's true year-round time zone and not one of its semi-annual time zones.</div>
+      </i>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan='2'>
+      <label for='session-day'>Session time for <span id='anchor-label' class='accented'></span></label>
+    </th>
+  </tr>
+  <tr class='padding-below'>
+    <td>
+      <select id='session-day'>
+        <option value='--' class='placeholder'>--</option>
+        <option value='0'>Sun</option>
+        <option value='1'>Mon</option>
+        <option value='2'>Tue</option>
+        <option value='3'>Wed</option>
+        <option value='4'>Thu</option>
+        <option value='5'>Fri</option>
+        <option value='6'>Sat</option>
+      </select>
+      <input id='session-time' type='time'>
+    </td>
+  </tr>
+</table>
+
+<button onclick='getTimeZoneComparison()'>Compare session times</button>
+
+<div id='time-zone-comparison-results'
+     hidden><br>
+  <table id='time-zone-comparison-table'>
+    <tr id='time-zone-comparison-labels'>
+      <th>Session</th>
+      <th id='coach-label' colspan='3'>
+        <i id='coach-label-anchor' class='fa-solid fa-anchor' hidden></i> Coach
+      </th>
+      <th id='client-label' colspan='3'>
+        <i id='client-label-anchor' class='fa-solid fa-anchor' hidden></i> Client
+      </th>
+    </tr>
+    <tbody id='time-zone-comparison-cells'></tbody>
+  </table>
+</div>
+
+<div id='switch-clock-format-container' hidden><br>
+  <button id='switch-clock-format-button' onclick='switchClockFormatForComparison()'></button>
+</div>

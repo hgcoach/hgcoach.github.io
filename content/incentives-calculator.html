@@ -1,0 +1,269 @@
+<h3 id='tool-name'>Incentives calculator</h3>
+
+<div id='quarter-inputs'>
+
+  <table>
+    <tr>
+      <th><label for='year-of-quarter'>Quarter</label></th>
+    </tr>
+    <tr class='padding-below'>
+      <td>
+        <input id='year-of-quarter'
+               type='text'
+               placeholder='yyyy'
+               class='year'>
+        <select id='quarter-selection'>
+          <option value='Q1'>Q1</option>
+          <option value='Q2'>Q2</option>
+          <option value='Q3'>Q3</option>
+          <option value='Q4'>Q4</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+
+  <button id='calculate-quarter-date-range-button'
+          onclick='calculateQuarterDateRange()'>Calculate date range</button>
+
+</div>
+
+<div id='calculated-quarter-info'
+      hidden>
+
+  <div class='space-between'>
+    <span>
+      HG's
+      <span id='quarter'
+            class='accented'></span>
+      <span>is:</span>
+    </span>
+    <button id='reset-quarter-date-range-button'
+            onclick='resetIncentivesCalculator()'>Reset</button>
+  </div>
+
+  <div class='space-between'>
+
+    <table>
+
+      <tr>
+        <td class='annotation text-align-right'>from</td>
+        <td>
+          <span id='quarter-start-date'
+                class='accented'></span>
+          <span class='annotation'>(00:00 UTC)</span>
+        </td>
+      </tr>
+
+      <tr>
+        <td class='annotation text-align-right'>to</td>
+        <td>
+          <span id='quarter-end-date'
+                class='accented'></span>
+          <span class='annotation'>(23:59 UTC)</span>
+        </td>
+      </tr>
+
+      <tr class='padding-below'>
+        <td class='annotation text-align-right'>paid</td>
+        <td>
+          <span id='quarter-pay-date'
+                class='annotation'></span>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
+
+<div id='preliminary-incentive-inputs'
+     hidden>
+
+  <table>
+    <tr>
+      <th class='text-align-right'><label for='cohort'>Cohort</label></th>
+      <td class='padding-left'>
+        <select id='cohort'>
+          <option value='--'
+                  class='placeholder'>--</option>
+          <option value='0-5'
+                  class='normal-color'>0-5</option>
+          <option value='6+'
+                  class='normal-color'>6+</option>
+        </select>
+        <i class='tooltip fa-solid fa-circle-info'>
+          <div class='tooltip-text right'>Your cohort affects your incentive rates.</div>
+        </i>
+      </td>
+    </tr>
+    <tr class='padding-below'>
+      <th class='text-align-right'><label for='median-hours'>Median hours</label></th>
+      <td class='padding-left'>
+        <select id='median-hours'>
+          <option value='--'
+                  class='placeholder'>--</option>
+          <option value='Less than 13'
+                  class='normal-color'>Less than 13</option>
+          <option value='13+'
+                  class='normal-color'>13+</option>
+          <option value='17+'
+                  class='normal-color'>17+</option>
+          <option value='20+'
+                  class='normal-color'>20+</option>
+          <option value='24+'
+                  class='normal-color'>24+</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td class='wrap-text'>
+        <input id='psf-rating'
+               type='checkbox'>
+        <label for='psf-rating'>PSF rating no lower than 2% below global average</label>
+      </td>
+    </tr>
+    <tr>
+      <td class='wrap-text padding-below'>
+        <input id='high-demand-slots'
+               type='checkbox'>
+        <label for='high-demand-slots'>Worked at least 4 high-demand slots</label>
+      </td>
+    </tr>
+  </table>
+
+  <button id='show-quarterly-hour-inputs'
+          onclick='showQuarterlyHourInputs()'>Next</button>
+
+</div>
+
+<div id='cohort-and-incentive-info'></div>
+
+<div id='same-tier-quarterly-hours'
+     class='expand-last-child'
+     hidden><br>
+
+  <hr>
+
+  <table>
+    <tr><th colspan='3'>Enter work information...</th><tr>
+    <tbody id='month'></tbody>
+    <tr class='padding-below'>
+      <th><label for='coach-tier'>Tier</label></th>
+      <td class='padding-left'>
+        <select id='coach-tier'>
+          <option value='--'
+                  class='placeholder'>--</option>
+          <option value='core'
+                  class='normal-color'>Core</option>
+          <option value='advanced'
+                  class='normal-color'>Advanced</option>
+          <option value='master'
+                  class='normal-color'>Master</option>
+        </select>
+        <i class='tooltip fa-solid fa-circle-info'>
+          <div class='tooltip-text right'>Your tier affects your incentive rates.</div>
+        </i>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+
+    <tr>
+      <th class='text-align-right'>
+        <label for='quarterly-personal-hours'>Personal hours</label>
+      </th>
+      <td><input id='quarterly-personal-hours'
+                 type='text'
+                 class='four-numbers
+                        text-align-right'
+                 placeholder='0'></td>
+      <td id='personal-hour-rate'
+          class='annotation'></td>
+    </tr>
+
+    <tr>
+      <th class='text-align-right'>
+        <label for='quarterly-creator-hours'>Creator hours</label>
+      </th>
+      <td><input id='quarterly-creator-hours'
+                 type='text'
+                 class='four-numbers
+                        text-align-right'
+                 placeholder='0'></td>
+      <td id='creator-hour-rate'
+          class='annotation'></td>
+    </tr>
+
+    <tr>
+      <th class='text-align-right'>
+        <label for='quarterly-career-hours'>Career hours</label>
+      </th>
+      <td><input id='quarterly-career-hours'
+                 type='text'
+                 class='four-numbers
+                        text-align-right'
+                 placeholder='0'></td>
+      <td id='career-hour-rate'
+          class='annotation'></td>
+    </tr>
+
+    <tr>
+      <th class='text-align-right'>
+        <label for='quarterly-parent-hours'>Parent hours</label>
+      </th>
+      <td><input id='quarterly-parent-hours'
+                 type='text'
+                 class='four-numbers
+                        text-align-right'
+                 placeholder='0'></td>
+      <td id='parent-hour-rate'
+          class='annotation'></td>
+    </tr>
+
+    <tr class='padding-below'>
+      <th class='text-align-right'>
+        <label for='quarterly-group-hours'>Group hours</label>
+      </th>
+      <td><input id='quarterly-group-hours'
+                 type='text'
+                 class='four-numbers
+                        text-align-right'
+                 placeholder='0'></td>
+      <td id='group-hour-rate'
+          class='annotation'></td>
+    </tr>
+
+  </table>
+
+  <hr><br>
+
+  <button id='calculate-incentive-for-single-tier-button'
+          onclick='calculateIncentiveForSingleTier()'>Calculate incentive</button>
+
+</div>
+
+<div id='incentive-results'><br>
+
+  <table>
+    <tr>
+      <th>
+        <label id='incentive-label' for='incentive'></label>
+      </th>
+    </tr>
+    <tr class='padding-below expand-last-child'>
+      <td id='incentive' class='accented'></td>
+      <td class='text-align-right'>
+        <button id='toggle-incentive-breakdown-button'
+                onclick='toggleIncentiveBreakdown()'>Show breakdown</button>
+      </td>
+    </tr>
+  </table>
+
+  <div id='incentive-breakdown' hidden></div>
+
+</div>

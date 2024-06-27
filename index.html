@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang='en' data-theme='dark'>
+
+  <head>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
+    <link rel='stylesheet'
+          href='app.css'>
+    <link rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css'
+          integrity='sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=='
+          crossorigin='anonymous'
+          referrerpolicy='no-referrer'>
+    <link rel='icon'
+          type='image/x-icon'
+          href='images/favicon.svg'>
+    <title>HG Coach Toolkit</title>
+  </head>
+
+  <body>
+
+    <div id='content'>
+
+      <header>
+
+        <div id='page-title-row'>
+
+          <!-- Page title -->
+          <i id='logo'
+             class='fa-solid fa-screwdriver-wrench'></i>
+          <h1>HG Coach Toolkit</h1>
+
+          <!-- Theme toggle -->
+          <button id='theme-toggle'
+                  class='mobile-hidden'
+                  onclick='storage.set("theme", "toggle")'>
+            <i id='dark-mode-button'
+               class='fa-solid fa-circle-half-stroke'
+               hidden></i>
+            <i id='light-mode-button'
+               class='fa-solid fa-circle-half-stroke'></i>
+          </button>
+
+          <!-- Settings -->
+          <button id='settings'
+                  class='mobile-hidden'
+                  onclick='loadTool("settings", this);'>
+            <i class='fa-solid fa-cog'></i>
+          </button>
+
+          <!-- Mobile menu -->
+          <button id='mobile-menu-button'
+                  onclick='setMobileMenuState()'>
+            <i class='fa-solid fa-bars'></i>
+          </button>
+
+        </div>
+
+        <div id='navigation-bar'
+             class='mobile-hidden'>
+          <button id='time-zone-converter-tool-button'
+                  class='left'
+                  onclick='loadTool("time-zone-converter", this)'>Time zone converter</button>
+          <button onclick='loadTool("time-zone-comparison", this)'>Time zone comparison</button>
+          <button onclick='loadTool("dst-info", this)'>DST info</button>
+          <button onclick='loadTool("average-hours-calculator", this)'>Average hours</button>
+          <button onclick='loadTool("median-hours-calculator", this)'>Median hours</button>
+          <button class='right'
+                  onclick='loadTool("incentives-calculator", this)'>Incentives</button>
+        </div>
+
+      </header>
+
+      <main>
+        <div id='loading-indicator-container'>
+          <div class='loading-indicator'>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          </div>
+          <div id='loading-error-container' class='notice'>
+            <noscript>
+              JavaScript is required for this toolkit to work,<br>
+              but it is currently disabled in your browser's settings.
+            </noscript>
+            <div id='network-error' hidden>
+              Failed to fetch necessary resources.
+            </div>
+          </div>
+        </div>
+
+        <div id='tool-container' hidden></div>
+
+        <div id='debug-container' class='notice' hidden>
+          <hr><br>
+          <strong>On-screen debugger</strong><br><br>
+          <span id='debug-message'></span>
+        </div>
+
+      </main>
+
+      <footer class='notice'>
+        <div>
+          This website is unaffiliated with HG, may not be actively maintained, and may not be 100% reliable. If you encounter a problem or have a suggestion, feel free to message
+          <span class='discord'><i class='fa-brands fa-discord'></i>sim_hg</span>.
+        </div>
+      </footer>
+
+    </div>
+
+    <!-- jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+
+    <!-- Font Awesome -->
+    <script src='https://kit.fontawesome.com/e6dcd170d4.js'
+            crossorigin='anonymous'></script>
+
+    <!-- Selectize -->
+    <script
+      src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js'
+      integrity='sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=='
+      crossorigin='anonymous'
+      referrerpolicy='no-referrer'
+    ></script>
+
+    <!-- Day.js -->
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/dayjs.min.js'></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/duration.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/utc.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/timezone.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/advancedFormat.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/isoWeek.js'></script>
+    <script>dayjs.extend(window.dayjs_plugin_duration)</script>
+    <script>dayjs.extend(window.dayjs_plugin_utc)</script>
+    <script>dayjs.extend(window.dayjs_plugin_timezone)</script>
+    <script>dayjs.extend(window.dayjs_plugin_advancedFormat)</script>
+    <script>dayjs.extend(window.dayjs_plugin_isoWeek)</script>
+
+    <!-- Moment.js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js'></script>
+    <script>moment().format()</script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.45/moment-timezone.min.js'></script>
+    <script src='https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js'></script>
+
+    <!-- MathJax -->
+    <script src='https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
+    <script id='MathJax-script'
+            async
+            src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+    <script>MathJax = { chtml: { displayAlign: 'left' } }</script>
+
+    <!-- Custom scripts -->
+    <script src='scripts/utilities.js'></script>
+
+    <script src='scripts/data/theme.js'></script>
+    <script src='scripts/data/timeZone.js'></script>
+    <script src='scripts/data/datetime.js'></script>
+
+    <script src='scripts/gui/settings.js'></script>
+    <script src='scripts/gui/timeZoneConverter.js'></script>
+    <script src='scripts/gui/timeZoneComparison.js'></script>
+    <script src='scripts/gui/dstInfo.js'></script>
+    <script src='scripts/gui/averageHoursCalculator.js'></script>
+    <script src='scripts/gui/medianHoursCalculator.js'></script>
+    <script src='scripts/gui/incentivesCalculator.js'></script>
+
+    <script src='scripts/storage.js'></script>
+    <script src='scripts/app.js'></script>
+
+  </body>
+
+</html>
